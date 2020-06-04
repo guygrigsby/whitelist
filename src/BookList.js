@@ -20,8 +20,12 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+const thing = () {
+}
+
 const BookList = ({ booklist, ...o }) => {
   const classes = useStyles();
+  const thing = {};
   return (
     <Box className={classes.root}>
       <List color="primary" aria-label="books to kill racism">

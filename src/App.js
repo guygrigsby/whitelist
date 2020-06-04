@@ -1,25 +1,28 @@
-import React from "react";
-import Container from "@material-ui/core/Container";
-import Typography from "@material-ui/core/Typography";
-import Box from "@material-ui/core/Box";
-import Paper from "@material-ui/core/Paper";
-import Link from "@material-ui/core/Link";
-import ReadingList from "./ReadingList";
-import BookList from "./BookList";
+import React from 'react';
+import { hot } from 'react-hot-loader/root';
+import Container from '@material-ui/core/Container';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
+import Grid from '@material-ui/core/Grid';
+import Link from '@material-ui/core/Link';
+import 'fontsource-roboto';
+import Introduction from './Intro.js';
+import NameList from './HumanList.js';
 
 const Copyright = () => {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
+      {'Copyright © '}
       <Link
         color="inherit"
         href="https://twitter.com/SpikeLeeJoint/status/1267269978320826368"
       >
-        Humanity
-      </Link>{" "}
+        whitelist.dev
+      </Link>{' '}
       {new Date().getFullYear()}
-      {"."}
+      {'.'}
     </Typography>
+    //              <BookList booklist={[...ReadingList]} />
   );
 };
 
@@ -28,23 +31,34 @@ const App = () => {
     <Container maxWidth="md">
       <Box
         my={8}
+        p={3}
+        spacing={3}
         textAlign="center"
-        alignContent="flex-end"
+        alignContent="flex-start"
         justifyContent="center"
         alignItems="center"
       >
         <Typography variant="h4" component="h1" gutterBottom>
-          Stop Killing Black People
+          whitelist.dev
         </Typography>
-        <Typography variant="body2" color="textSecondary" align="center">
-          We whites have all the power. Use it for good.
+        <Typography variant="h6" color="textSecondary">
+          We don't have to blacklist white people to whitelist black people
         </Typography>
-        <Box p={2}>
-          <BookList booklist={[...ReadingList]} />
-        </Box>
-        <Copyright />
+        <Grid container>
+          <Grid item xs={6}>
+            <Box p={4}>
+              <Introduction />
+            </Box>
+          </Grid>
+          <Grid item xs={6}>
+            <NameList />
+          </Grid>
+          <Grid container item xs={12}>
+            <Copyright />
+          </Grid>
+        </Grid>
       </Box>
     </Container>
   );
 };
-export default App;
+export default hot(App);

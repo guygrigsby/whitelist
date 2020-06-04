@@ -1,0 +1,12 @@
+Hi. My name is Guy. I grew up in small town Colorado and have lived in Denver for almost 15 years. I am not really extraordinary. We were lower middle class when I was young, but we had enough. I am white. I don't usually say that because I assume that _it_ is assumed. Which leads me to why we are here. I want to talk about my experiences with race. 
+
+In conversations about racial injustice, white people don't talk about themselves. Most of the time the should not. In this case, however, I think that I have may gone through what a lot of folks are going through right now.
+  
+I remember when I first heard the phrase "white privilege." It pissed me off. *I* was angry and I have a lot of privileges that many white people don't have. I thought, "I'm smart and I work hard and got the position where I am now because I am awesome. I am a fucking software engineer." That's true. I _did_ work hard and I _am_ smart. The chances are high that *you* have too. Most of us work very hard and it really sucks when someone says something that sounds like we didn't earn what we have.
+
+The problem with that phrase is that it puts many people on the defensive. Immediately. It did with me. I thought, "You don't know anything about me. Don't you judge me." Fuck white privilege. I am just being a human and getting what I deserve. I thought that for a while and then it dawned on me. I'm a white dude in tech, which is pretty common, and it's all very normal to me. The way that I am treated is the normal way a person should be treated. Black people are not treated the same way I am treated. I began to understand when I chose to frame my privilege more like "black exclusion." I *do* deserve to be treated the way I am treated. So does every other human in this world. Black people in the United States are not treated like I am. They are treated as threats, as if undeserving of the same treatment. 
+
+"Yeah sure, black people have it shitty, but it's not my fault. Why should I have to pay reparations or change my life ...?" It's probably not your fault. I don't know you, but I think that most people mean well. The problem is that as those who are considered "normal", we are really the ones who have to demand change. Our voices are heard while theirs are not. We can use our influence to lift black people up.
+
+That's why I have built this site. By sharing my experience and putting it out there, I hope to help normalize it so it is less uncomfortable for others.
+
