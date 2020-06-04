@@ -1,11 +1,20 @@
-import { createMuiTheme } from "@material-ui/core/styles";
+import { createMuiTheme } from '@material-ui/core/styles';
+
+const getType = () => {
+  if (Math.random() >= 0.5) {
+    return 'dark';
+  }
+  return 'light';
+};
+
 const palette = {
-  type: "dark",
-  primary: { main: "#212121", contrastText: "#FAFAFA" },
-  secondary: { main: "#FAFAFA", contrastText: "#212121" }
+  type: getType(),
+  primary: { main: '#000000', contrastText: '#ffffff' },
+  secondary: { main: '#FFFFFF', contrastText: '#000000' },
+  text: { main: '#FFF' },
 };
 const theme = createMuiTheme({
-  palette: palette
+  palette: palette,
 });
 
 export default theme;

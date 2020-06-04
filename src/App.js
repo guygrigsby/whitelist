@@ -5,9 +5,10 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
-import 'fontsource-roboto';
 import Introduction from './Intro.js';
-import NameList from './HumanList.js';
+import HumanList from './HumanList.js';
+import { names } from './Name';
+import Nav from './Nav';
 
 const Copyright = () => {
   return (
@@ -29,35 +30,33 @@ const Copyright = () => {
 const App = () => {
   return (
     <Container maxWidth="md">
-      <Box
-        my={8}
-        p={3}
-        spacing={3}
-        textAlign="center"
-        alignContent="flex-start"
-        justifyContent="center"
-        alignItems="center"
-      >
-        <Typography variant="h4" component="h1" gutterBottom>
-          whitelist.dev
-        </Typography>
-        <Typography variant="h6" color="textSecondary">
-          We don't have to blacklist white people to whitelist black people
-        </Typography>
-        <Grid container>
-          <Grid item xs={6}>
-            <Box p={4}>
-              <Introduction />
+      <Nav drawerList={<HumanList names={names} />}>
+        <Box
+          my={3}
+          spacing={3}
+          textAlign="center"
+          alignContent="flex-start"
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Typography variant="h4" component="h2" gutterBottom>
+            whitelist.dev
+          </Typography>
+          <Typography variant="h6" color="textSecondary">
+            Whitelists and Blacklists are not for People
+          </Typography>
+        </Box>
+        <Grid container p={3}>
+          <Grid item xs={12} p={4}>
+            <Introduction />
+          </Grid>
+          <Grid item xs={12}>
+            <Box p={3}>
+              <Copyright />
             </Box>
           </Grid>
-          <Grid item xs={6}>
-            <NameList />
-          </Grid>
-          <Grid container item xs={12}>
-            <Copyright />
-          </Grid>
         </Grid>
-      </Box>
+      </Nav>
     </Container>
   );
 };

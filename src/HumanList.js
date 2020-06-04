@@ -3,10 +3,8 @@ import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import HumanIcon from './HumanIcon';
-import { names } from './Name';
+import PropTypes from 'prop-types';
 
 const useStyles = makeStyles((theme) => ({
   inline: {
@@ -18,21 +16,22 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const NameList = () => {
+const NameList = ({ names }) => {
   const classes = useStyles();
   return (
     <Box className={classes.root}>
       <List color="primary" aria-label="names of black people murdered">
         {names.map((person, idx) => (
-          <ListItem key={idx} button>
-            <ListItemIcon>
-              <HumanIcon />
-            </ListItemIcon>
+          <ListItem key={idx}>
             <ListItemText primary={person} />
           </ListItem>
         ))}
       </List>
     </Box>
   );
+};
+
+NameList.propTypes = {
+  names: PropTypes.arrayOf(PropTypes.string),
 };
 export default NameList;

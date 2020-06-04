@@ -9,11 +9,14 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
+    "@hot-loader/react-dom": "^16.13.0",
     "@material-ui/core": "latest",
+    "@material-ui/icons": "^4.9.1",
     "clsx": "latest",
     "fontsource-roboto": "^2.1.3",
-    "react": "^0.0.0-33c3af284",
-    "react-dom": "^0.0.0-33c3af284",
+    "prop-types": "^15.7.2",
+    "react": "latest",
+    "react-dom": "yarn:@hot-loader/react-dom",
     "react-hot-loader": "^4.12.21",
     "react-markdown": "^4.3.1",
     "react-scripts": "latest"

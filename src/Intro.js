@@ -1,32 +1,41 @@
-// eslint-disable-next-line react-hooks/exhaustive-deps
-import React, { useState, useEffect, useMemo } from 'react';
+import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import intro from './markdown/intro.md';
 import ReactMarkdown from 'react-markdown';
 
-const Introduction = () => {
-  const [text, setText] = useState[null];
-  const loaded = text !== null;
-
-  const memoizedSetText = useMemo(() => {
+class Introduction extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loaded: false,
+      text: '',
+    };
+  }
+  async load() {
     fetch(intro)
-      .then((res) => res.text())
-      .then((t) => {
-        setText(t);
+      .then((res) => {
+        return res.text();
+      })
+      .then((text) => {
+        this.setState(() => {
+          return { text };
+        });
+      })
+      .catch((error) => {
+        console.log(error);
       });
-  }, [setText]);
-
-  useEffect(() => {
-    if (!loaded) {
-      memoizedSetText();
+    this.setState({ loaded: true });
+  }
+  render() {
+    if (!this.state.loaded) {
+      this.load();
     }
-  }, [loaded, memoizedSetText]);
-
-  return (
-    <Typography variant="body2" color="textSecondary" align="justify">
-      <ReactMarkdown>{text}</ReactMarkdown>
-    </Typography>
-  );
-};
+    return (
+      <Typography variant="body2" align="justify">
+        <ReactMarkdown source={this.state.text} />
+      </Typography>
+    );
+  }
+}
 
 export default Introduction;
