@@ -17,14 +17,8 @@ import theme from './theme.js';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    margin: 'auto',
+    flexGrow: 1,
     borderRadius: 10,
-    maxWidth: 300,
-    position: 'relative',
-    marginLeft: 'auto',
-    overflow: 'initial',
-    display: 'flex',
-    flexDirection: 'column',
     alignItems: 'center',
   },
   collapse: {
@@ -50,11 +44,16 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: 'none',
     transition: '0.2s',
     '&:hover': {
-      transform: 'scale(1.1)',
       boxShadow: '0 6px 20px 0 rgba(0,0,0,0.38)',
+      '& $header': {
+        //overflow: 'visible',
+        //transform: 'scale(1.1)',
+        //boxShadow: '0 6px 20px 0 rgba(0,0,0,0.38)',
+      },
     },
   },
   header: {
+    transition: '0.3s',
     width: '100%',
     color: theme.palette.type === 'dark' ? '#000000' : '#FFFFFF',
     backgroundColor: theme.palette.type === 'dark' ? '#FFFFFF' : '#000000',
@@ -66,6 +65,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   page: {
+    transition: '0.3s',
     width: '100%',
     backgroundColor: theme.palette.type === 'dark' ? '#000000' : '#FFFFFF',
   },
@@ -81,9 +81,11 @@ export const ExpandingCard = ({ title, startingParagraph, children }) => {
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
-  console.log('child', children);
   return (
-    <Card className={clsx(classes.root, classes.card)}>
+    <Card
+      className={clsx(classes.root, classes.card)}
+      onClick={handleExpandClick}
+    >
       <Box className={clsx(classes.title, classes.header)}>{title}</Box>
       <Box className={classes.page}>
         <CardContent>
@@ -104,7 +106,7 @@ export const ExpandingCard = ({ title, startingParagraph, children }) => {
               </IconButton>
             </CardActions>
             <Collapse
-              classes={classes.collapse}
+              className={classes.collapse}
               in={expanded}
               timeout="auto"
               unmountOnExit

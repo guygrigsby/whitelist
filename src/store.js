@@ -40,21 +40,25 @@ export const putMessage = async (author, image_uri, text) => {
     });
 };
 
-export const getFromDB = async (callback) => {
-  console.log('fetching');
+export const getFromDB = () => {
   const getOptions = {
     source: 'default',
   };
-  db.collection('chapters')
-    .where('visibility', '==', 'public')
+  return db
+    .collection('chapters')
     .get(getOptions)
     .then((querySnapshot) => {
       console.log('FETCH then', querySnapshot);
-      querySnapshot.forEach((doc) => {
+      return querySnapshot.docs.map((doc) => {
         const message = doc.data();
         console.log(`${doc.id} => ${message}`);
-        callback(message);
+        message.title = doc.id;
+        return message;
       });
+    })
+    .then((chapters) => {
+      console.log('chapters', chapters);
+      return chapters;
     })
     .catch((error) => {
       console.error('FETCH Error:', error);

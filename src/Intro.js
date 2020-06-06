@@ -1,8 +1,9 @@
 import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
-import Typography from '@material-ui/core/Typography';
 import ReactMarkdown from 'react-markdown';
 import SiteInstructions from './SiteInstructions.js';
+import theme from './theme';
 
 export const readFile = (file, callback) => {
   fetch(file)
@@ -18,12 +19,17 @@ export const readFile = (file, callback) => {
     });
 };
 
+const useStyles = makeStyles(() => ({
+  chapter: {
+    paragraph: true,
+  },
+}));
+
 const Introduction = ({ markdown }) => {
+  const classes = useStyles(theme);
   return (
     <>
-      <Typography align="justify">
-        <ReactMarkdown source={markdown} />
-      </Typography>
+      <ReactMarkdown className={classes.chapter} source={markdown} />
       <SiteInstructions />
     </>
   );
