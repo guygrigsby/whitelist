@@ -1,6 +1,6 @@
 const ReadingList = [
   {
-    name: "White Fragility",
+    title: "White Fragility",
     url: "https://libjournal.uncg.edu/ijcp/article/viewFile/249/116",
     comment: "free online",
     image:

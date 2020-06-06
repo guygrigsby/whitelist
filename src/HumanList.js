@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const NameList = ({ names }) => {
+const HumanList = ({ names }) => {
   const classes = useStyles();
   return (
     <Box className={classes.root}>
@@ -31,7 +31,7 @@ const NameList = ({ names }) => {
   );
 };
 
-NameList.propTypes = {
+HumanList.propTypes = {
   names: PropTypes.arrayOf(PropTypes.string),
 };
-export default NameList;
+export default HumanList;

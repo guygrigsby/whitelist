@@ -1,41 +1,36 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
-import intro from './markdown/intro.md';
 import ReactMarkdown from 'react-markdown';
+import SiteInstructions from './SiteInstructions.js';
 
-class Introduction extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      loaded: false,
-      text: '',
-    };
-  }
-  async load() {
-    fetch(intro)
-      .then((res) => {
-        return res.text();
-      })
-      .then((text) => {
-        this.setState(() => {
-          return { text };
-        });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    this.setState({ loaded: true });
-  }
-  render() {
-    if (!this.state.loaded) {
-      this.load();
-    }
-    return (
-      <Typography variant="body2" align="justify">
-        <ReactMarkdown source={this.state.text} />
+export const readFile = (file, callback) => {
+  fetch(file)
+    .then((res) => {
+      return res.text();
+    })
+    .then((text) => {
+      callback(text);
+      return text;
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+};
+
+const Introduction = ({ markdown }) => {
+  return (
+    <>
+      <Typography align="justify">
+        <ReactMarkdown source={markdown} />
       </Typography>
-    );
-  }
-}
+      <SiteInstructions />
+    </>
+  );
+};
 
+Introduction.propTypes = {
+  markdown: PropTypes.string.isRequired,
+  callback: PropTypes.func,
+};
 export default Introduction;

@@ -1,39 +1,34 @@
-import React from "react";
+import React from 'react';
 import Box from '@material-ui/core/Box';
-import { makeStyles } from "@material-ui/core/styles";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import MenuBookIcon from "@material-ui/icons/MenuBook";
-import ListItemAvatar from "@material-ui/core/ListItemAvatar";
-import Avatar from "@material-ui/core/Avatar";
-import Typography from "@material-ui/core/Typography";
+import { makeStyles } from '@material-ui/core/styles';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import MenuBookIcon from '@material-ui/icons/MenuBook';
+import PropTypes from 'prop-types';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    width: "100%",
-    backgroundColor: theme.palette.background.paper
+    width: '100%',
+    backgroundColor: theme.palette.background.paper,
   },
   inline: {
-    display: "inline"
-  }
+    display: 'inline',
+  },
 }));
 
-const thing = () {
-}
-
-const BookList = ({ booklist, ...o }) => {
+const BookList = ({ booklist }) => {
   const classes = useStyles();
-  const thing = {};
   return (
     <Box className={classes.root}>
       <List color="primary" aria-label="books to kill racism">
-        {booklist.map(item => (
+        {booklist.map((item, idx) => (
           <ListItem
+            key={idx}
             button
             onClick={() => {
-              window.open(item.url, "_blank");
+              window.open(item.url, '_blank');
             }}
           >
             <ListItemIcon>
@@ -45,6 +40,9 @@ const BookList = ({ booklist, ...o }) => {
       </List>
     </Box>
   );
+};
+BookList.propTypes = {
+  booklist: PropTypes.arrayOf(PropTypes.string),
 };
 
 export default BookList;

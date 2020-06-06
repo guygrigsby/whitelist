@@ -6,7 +6,8 @@ import Hidden from '@material-ui/core/Hidden';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import theme from './theme';
+import { makeStyles } from '@material-ui/core/styles';
 
 const drawerWidth = 240;
 
@@ -44,8 +45,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function ResponsiveDrawer({ window, children, drawerList }) {
-  const classes = useStyles();
-  const theme = useTheme();
+  const classes = useStyles(theme);
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const handleDrawerToggle = () => {
@@ -83,7 +83,7 @@ function ResponsiveDrawer({ window, children, drawerList }) {
           <Drawer
             container={container}
             variant="temporary"
-            anchor={theme.direction === 'rtl' ? 'right' : 'left'}
+            anchor={'left'}
             open={mobileOpen}
             onClose={handleDrawerToggle}
             classes={{
@@ -117,12 +117,9 @@ function ResponsiveDrawer({ window, children, drawerList }) {
 }
 
 ResponsiveDrawer.propTypes = {
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
   window: PropTypes.func,
   children: PropTypes.node.isRequired,
+  drawerList: PropTypes.any.isRequired,
 };
 
 export default ResponsiveDrawer;

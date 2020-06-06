@@ -7,7 +7,7 @@ const getType = () => {
   return 'light';
 };
 
-const palette = {
+export const palette = {
   type: getType(),
   primary: { main: '#000000', contrastText: '#ffffff' },
   secondary: { main: '#FFFFFF', contrastText: '#000000' },
