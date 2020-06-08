@@ -7,7 +7,6 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import EmailIcon from '@material-ui/icons/Email';
 import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import theme from './theme';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -85,9 +84,7 @@ function ResponsiveDrawer({ contact, window, children, drawerList }) {
           </IconButton>
           <div className={classes.bar} />
           <div className={classes.toolbarButtons}>
-            <IconButton
-              onClick={contact}
-            >
+            <IconButton onClick={contact}>
               <EmailIcon color="inherit" />
             </IconButton>
           </div>

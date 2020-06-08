@@ -73,9 +73,9 @@ const App = () => {
 
   const introText = `
 
-I am a dude that works in tech. I am white. I don't usually say that because I think it is assumed. That's a problem. I am part of the problem. How can I stop assuming white? How can we 
+I am a dude that works in tech. I am white. I don't usually say that because I think it is assumed. That's a problem. I am part of the problem. The first step to combat those types of assumptions is to learn.
 
-What follows is a list of resources for white people on race. The whitelist.
+What follows is a list of some resources for white people on race. The whitelist.
 
   `;
   return (
