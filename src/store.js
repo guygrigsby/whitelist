@@ -18,14 +18,15 @@ firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 const db = firebase.firestore();
 export const putMessage = async (author, image_uri, text) => {
-  db.collection('chunks')
+  return db
+    .collection('chunks')
     .add({
       author,
       image_uri,
       text,
     })
     .then(function (docRef) {
-      console.log('Document written with ID: ', docRef.id);
+      return docRef;
     })
     .catch(function (error) {
       console.error('Error adding document: ', error);
@@ -40,16 +41,13 @@ export const getFromDB = (collection) => {
     .collection(collection)
     .get(getOptions)
     .then((querySnapshot) => {
-      console.log('FETCH then', querySnapshot);
       return querySnapshot.docs.map((doc) => {
         const message = doc.data();
-        console.log(`${doc.id} => ${message}`);
         message.title = doc.id;
         return message;
       });
     })
     .then((coll) => {
-      console.log('coll', coll);
       return coll;
     })
     .catch((error) => {
