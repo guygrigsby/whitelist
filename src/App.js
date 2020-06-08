@@ -71,7 +71,7 @@ const App = () => {
 
   const introText = `
 
-I work in tech. I am white. I don't usually say that because I think it is assumed. That's a problem. I am part of the problem. 
+I work in tech and I am white. I don't usually say that because I think it is assumed. That's a problem. I am part of the problem. How can we stop assuming white?
 
 What follows is a list of resources for white people on race. The whitelist.
 
@@ -97,7 +97,7 @@ What follows is a list of resources for white people on race. The whitelist.
             >
               {siteSubtitle}
             </Typography>
-            {introText}
+            <Typography color="textSecondary">{introText}</Typography>
           </Box>
 
           <Grid container alignContent="flex-start" justify="space-around">
@@ -129,23 +129,23 @@ What follows is a list of resources for white people on race. The whitelist.
             alignContent="flex-start"
             justify="center"
             className={classes.chipContaier}
-            sm
           >
-            <Grid item lg p={3} align="center">
-              <Typography gutterBottom color="textSecondary" variant="h6">
-                {'Learn from Black People'}
-              </Typography>
-              <Typography gutterBottom variant="body2">
-                {
-                  "These are some black voices that have helped me understand. Don't go ask them for help. Follow them and listen."
-                }
-              </Typography>
+            <Grid item align="center">
+              <Box p={6}>
+                <Typography gutterBottom color="textSecondary" variant="h6">
+                  {'Learn from Black People'}
+                </Typography>
+                <Typography gutterBottom>
+                  {
+                    "These are some black voices that have helped me understand. Don't go ask them for help. Follow them and listen."
+                  }
+                </Typography>
+              </Box>
             </Grid>
             {follow.map((handle, idx) => {
               return (
                 <Grid
                   item
-                  xs
                   align="center"
                   className={classes.plugcard}
                   key={`Twitter-${idx}`}
@@ -165,7 +165,9 @@ What follows is a list of resources for white people on race. The whitelist.
               );
             })}
           </Grid>
-          <ImageCredit className={classes.copyright} />
+          <Box p={3}>
+            <ImageCredit className={classes.copyright} />
+          </Box>
         </Nav>
       </Container>
     </>
