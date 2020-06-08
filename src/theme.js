@@ -1,10 +1,10 @@
 import { createMuiTheme } from '@material-ui/core/styles';
 
 const getType = () => {
-  if (Math.random() >= 0.5) {
-    return 'dark';
-  }
-  return 'light';
+  //if (Math.random() >= 0.5) {
+  return 'dark';
+  //}
+  //return 'light';
 };
 
 export const palette = {

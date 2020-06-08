@@ -17,9 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
   card: {
     alignItems: 'center',
-    width: '100%',
-    minWidth: 100,
-    maxWidth: 200,
+    width: 100,
     boxShadow: 'none',
     transition: '0.2s',
     '&:hover': {
@@ -32,9 +30,8 @@ const useStyles = makeStyles((theme) => ({
       },
     },
   },
-  content: {},
   title: {
-    maxHeight: 60,
+    height: 60,
     textOverflow: 'ellipsis',
     overflow: 'hidden',
     transition: '0.3s',
@@ -51,7 +48,7 @@ export const MediaCard = ({ image_url, title, url }) => {
   return (
     <Card className={classes.card} onClick={() => window.open(url)}>
       <img className={classes.media} alt="" src={image_url} />
-      <CardContent className={classes.content}>
+      <CardContent>
         <Typography className={cx(classes.text, classes.title)}>
           {title}
         </Typography>
