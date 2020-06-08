@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import Chip from '@material-ui/core/Chip';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
+import Divider from '@material-ui/core/Divider';
 import Box from '@material-ui/core/Box';
 import Link from '@material-ui/core/Link';
 import { getFromDB } from './store';
@@ -43,6 +44,7 @@ const styles = makeStyles((theme) => ({
   copyright: {
     textAlign: 'center',
     align: 'center',
+    alignItems: 'center',
     width: '100%',
   },
   plugcard: {
@@ -71,7 +73,7 @@ const App = () => {
 
   const introText = `
 
-I work in tech and I am white. I don't usually say that because I think it is assumed. That's a problem. I am part of the problem. How can we stop assuming white?
+I am a dude that works in tech. I am white. I don't usually say that because I think it is assumed. That's a problem. I am part of the problem. How can I stop assuming white? How can we 
 
 What follows is a list of resources for white people on race. The whitelist.
 
@@ -79,7 +81,10 @@ What follows is a list of resources for white people on race. The whitelist.
   return (
     <>
       <Container maxWidth="md">
-        <Nav drawerList={<HumanList names={names} />}>
+        <Nav
+          contact={() => window.open('mailto:devs@whitelist.dev')}
+          drawerList={<HumanList names={names} />}
+        >
           <Box my={3} textAlign="center" justifyContent="center">
             <Typography
               gutterBottom
@@ -97,6 +102,9 @@ What follows is a list of resources for white people on race. The whitelist.
             >
               {siteSubtitle}
             </Typography>
+            <br />
+            <Divider />
+            <br />
             <Typography color="textSecondary">{introText}</Typography>
           </Box>
 
@@ -131,11 +139,13 @@ What follows is a list of resources for white people on race. The whitelist.
             className={classes.chipContaier}
           >
             <Grid item align="center">
-              <Box p={6}>
+              <Box p={1}>
                 <Typography gutterBottom color="textSecondary" variant="h6">
                   {'Learn from Black People'}
                 </Typography>
-                <Typography gutterBottom>
+              </Box>
+              <Box p={1}>
+                <Typography gutterBottom color="textSecondary">
                   {
                     "These are some black voices that have helped me understand. Don't go ask them for help. Follow them and listen."
                   }
@@ -165,9 +175,16 @@ What follows is a list of resources for white people on race. The whitelist.
               );
             })}
           </Grid>
-          <Box p={3}>
-            <ImageCredit className={classes.copyright} />
-          </Box>
+          <br />
+          <Grid container align="center" justify="center" display="flex">
+            <Grid xs={12} item>
+              <Divider />
+            </Grid>
+
+            <Grid xs={12} item>
+              <ImageCredit className={classes.copyright} />
+            </Grid>
+          </Grid>
         </Nav>
       </Container>
     </>

@@ -5,7 +5,9 @@ import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import EmailIcon from '@material-ui/icons/Email';
 import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
 import theme from './theme';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -27,6 +29,9 @@ const useStyles = makeStyles((theme) => ({
       marginLeft: drawerWidth,
     },
   },
+  contactButton: {
+    leftMargin: 'auto',
+  },
   menuButton: {
     marginRight: theme.spacing(2),
     [theme.breakpoints.up('sm')]: {
@@ -42,9 +47,12 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     padding: theme.spacing(3),
   },
+  bar: {
+    flex: 1,
+  },
 }));
 
-function ResponsiveDrawer({ window, children, drawerList }) {
+function ResponsiveDrawer({ contact, window, children, drawerList }) {
   const classes = useStyles(theme);
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -75,6 +83,14 @@ function ResponsiveDrawer({ window, children, drawerList }) {
           >
             <MenuIcon />
           </IconButton>
+          <div className={classes.bar} />
+          <div className={classes.toolbarButtons}>
+            <IconButton
+              onClick={contact}
+            >
+              <EmailIcon color="inherit" />
+            </IconButton>
+          </div>
         </Toolbar>
       </AppBar>
       <nav className={classes.drawer} aria-label="mailbox folders">
@@ -120,6 +136,7 @@ ResponsiveDrawer.propTypes = {
   window: PropTypes.func,
   children: PropTypes.node.isRequired,
   drawerList: PropTypes.any.isRequired,
+  contact: PropTypes.func,
 };
 
 export default ResponsiveDrawer;
