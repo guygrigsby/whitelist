@@ -1,98 +1,172 @@
 import React, { useEffect, useState } from 'react';
 import { hot } from 'react-hot-loader/root';
-import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
-import Link from '@material-ui/core/Link';
+import Chip from '@material-ui/core/Chip';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import intro from './markdown/intro.md';
-import Introduction, { readFile } from './Intro';
+import Link from '@material-ui/core/Link';
 import { getFromDB } from './store';
 import HumanList from './HumanList';
 import { names } from './Name';
 import Nav from './Nav';
-import Chapter from './Chapter';
+import ResourcePlug from './ResourcePlug.js';
+import TwitterIcon from '@material-ui/icons/Twitter';
+import { makeStyles } from '@material-ui/core';
+import { follow } from './Twitters';
 
-const Copyright = () => {
+const siteTitle = 'whitelist.dev';
+const siteSubtitle = 'Confronting Whiteness';
+
+const ImageCredit = () => {
+  const classes = styles();
   return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="">
-        whitelist.dev
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
+    <Link
+      component="button"
+      className={classes.copyright}
+      variant="body2"
+      color="textSecondary"
+      onClick={() =>
+        window.open('https://www.flickr.com/photos/number7cloud/15378166334')
+      }
+    >
+      {`"I Can't Breath" image © Lorie Shaull. Reproduced under license.`}
+    </Link>
   );
 };
 
+const styles = makeStyles((theme) => ({
+  root: {
+    spacing: theme.spacing(3),
+  },
+  copyright: {
+    textAlign: 'center',
+    align: 'center',
+    width: '100%',
+  },
+  plugcard: {
+    padding: theme.spacing(3),
+  },
+  overrides: {
+    MuiIcon: {
+      colorPrimary: {
+        color: '#1DA1F2',
+      },
+    },
+  },
+  twitter: {
+    padding: theme.spacing(1),
+  },
+}));
+
 const App = () => {
-  const [text, setText] = useState(null);
-  const [chapters, setChapters] = useState(null);
-  const loaded = chapters !== null;
+  const classes = styles();
+  const [resources, setResources] = useState(null);
+  const loaded = resources !== null;
 
   useEffect(() => {
     const go = async () => {
-      setChapters(await getFromDB());
+      setResources(await getFromDB('resources'));
       console.log('done');
     };
     go();
   }, []);
 
-  useEffect(() => {
-    readFile(intro, (val) => setText(val));
-  }, []);
+  const introText = `
 
-  const introText = text;
-  const hasIntro = introText !== null && introText !== undefined;
+Hi. My name is Guy. I am white. I don't usually say that because I think it is assumed. That's a problem. I am part of the problem when it comes to racial injustice in the US. 
+
+What follows is a list of resources for white people on race. The whitelist.
+
+  `;
   return (
-    <Container maxWidth="lg">
-      <Nav drawerList={<HumanList names={names} />}>
-        <Box
-          my={3}
-          spacing={3}
-          textAlign="center"
-          alignContent="flex-start"
-          justifyContent="center"
-          alignItems="center"
-        >
-          <Typography
-            variant="h4"
-            color="textSecondary"
-            component="h2"
-            gutterBottom
+    <>
+      <Grid
+        container
+        className={classes.root}
+        direction="column"
+        justify="center"
+        alignItems="center"
+      >
+        <Nav drawerList={<HumanList names={names} />}>
+          <Box my={3} textAlign="center" justifyContent="center">
+            <Typography
+              gutterBottom
+              variant="h4"
+              color="textSecondary"
+              component="h1"
+            >
+              {siteTitle}
+            </Typography>
+            <Typography
+              gutterBottom
+              variant="h6"
+              component="h2"
+              color="textPrimary"
+            >
+              {siteSubtitle}
+            </Typography>
+            {introText}
+          </Box>
+          <Grid
+            container
+            alignContent="flex-start"
+            className={classes.gridContaier}
           >
-            whitelist.dev
-          </Typography>
-          <Typography variant="h6" color="textPrimary">
-            Confronting Whiteness
-          </Typography>
-        </Box>
-        {hasIntro && <Introduction markdown={introText} />}
-        <Grid
-          container
-          spacing={6}
-          direction="row"
-          justify="space-between"
-          alignItems="flex-start"
-        >
-          {loaded &&
-            chapters.map((chapter, idx) => (
-              <Grid item xs={6} key={`Chapter-${idx}`}>
-                <Chapter
-                  title={chapter.title}
-                  startingParagraph={chapter.summary}
-                  markdown={chapter.markdown}
-                  image_url={chapter.image_url}
-                />
-              </Grid>
-            ))}
-        </Grid>
-        <Box p={3}>
-          <Copyright />
-        </Box>
-      </Nav>
-    </Container>
+            {follow.map((handle, idx) => {
+              return (
+                <Grid
+                  item
+                  sm
+                  className={classes.plugcard}
+                  key={`Twitter-${idx}`}
+                >
+                  <Chip
+                    className={classes.twitter}
+                    avatar={
+                      <TwitterIcon
+                        style={{ fill: '#1DA1F2' }}
+                        className={classes.twitterIcon}
+                      />
+                    }
+                    label={<Typography variant="body2">{handle}</Typography>}
+                    onClick={() => window.open(`https://twitter.com/${handle}`)}
+                  />
+                </Grid>
+              );
+            })}
+          </Grid>
+          <Grid
+            container
+            alignContent="flex-start"
+            className={classes.gridContaier}
+          >
+            {loaded &&
+              resources.map((resource, idx) => {
+                let image = resource.image;
+                if (image === undefined) {
+                  image = 'assets/no_police_brutality.png';
+                }
+                return (
+                  <Grid
+                    item
+                    sm
+                    className={classes.plugcard}
+                    key={`Chapter-${idx}`}
+                  >
+                    <ResourcePlug
+                      key={idx}
+                      image={image}
+                      name={resource.name}
+                      {...resource}
+                    />
+                  </Grid>
+                );
+              })}
+          </Grid>
+        </Nav>
+      </Grid>
+      <ImageCredit className={classes.copyright} />
+    </>
   );
 };
 

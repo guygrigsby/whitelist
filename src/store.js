@@ -17,14 +17,6 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 const db = firebase.firestore();
-
-//if (window.location.hostname === 'localhost') {
-//  db.settings({
-//    host: 'localhost:8080',
-//    ssl: false,
-//  });
-//}
-
 export const putMessage = async (author, image_uri, text) => {
   db.collection('chunks')
     .add({
@@ -40,12 +32,12 @@ export const putMessage = async (author, image_uri, text) => {
     });
 };
 
-export const getFromDB = () => {
+export const getFromDB = (collection) => {
   const getOptions = {
     source: 'default',
   };
   return db
-    .collection('chapters')
+    .collection(collection)
     .get(getOptions)
     .then((querySnapshot) => {
       console.log('FETCH then', querySnapshot);
@@ -56,9 +48,9 @@ export const getFromDB = () => {
         return message;
       });
     })
-    .then((chapters) => {
-      console.log('chapters', chapters);
-      return chapters;
+    .then((coll) => {
+      console.log('coll', coll);
+      return coll;
     })
     .catch((error) => {
       console.error('FETCH Error:', error);

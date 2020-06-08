@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ExpandingCard } from './Card.js';
+import ExpandingCard from './ExpandingCard.js';
 import ReactMarkdown from 'react-markdown';
 const Chapter = ({ title, markdown, ...others }) => {
   return (
